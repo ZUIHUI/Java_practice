@@ -1,0 +1,87 @@
+public class HW5_1 {
+
+ public static void main(String[] args) {
+  
+  int[][] score = {
+    { 1, 76, 80, 66 },
+    { 2, 88, 92, 35 },
+    { 3, 90, 94, 95 },
+    { 4, 100, 98,78 },
+    { 5, 68, 70, 56 }
+   };
+  
+  // here is practicing
+  //ArrayTools.print(score[0]);
+  //String strScore=ArrayTools.toString(score[0]);
+  //int sum=ArrayTools.sum(score[0]);
+  //double avg=sum/(score[0].length-1);
+  //System.out.println(strScore+sum+"\t"+avg);
+  
+  System.out.println("成績統計程式");
+  System.out.println("座號 \t 國文\t 數學\t 英文\t 總分\t 平均\t");
+  
+  int total=0;
+  double average=0;
+  
+  for (int i = 0; i < score.length; i++) {
+   for (int j = 0; j < score[i].length; j++) {
+    System.out.print(score[i][j] + "\t");
+    total = ArrayTools.sum(score[i])-i-1;
+    average = (double) total/(score[i].length-1);
+    }
+   System.out.print(total +"\t");
+   System.out.printf("%.2f",average , "\t");
+   System.out.println();
+  }
+  
+
+ }
+
+}
+ 
+==============================
+ 
+import java.util.Arrays;
+public class PT6_2 {
+ public static void main(String[] args) {
+  
+  int[][] score = new int[][]{
+    { 76, 80, 66 },
+    { 88, 92, 35 },
+    { 90, 94, 95 },
+    { 100, 98,78 },
+    { 68, 70, 56 }
+   };
+  int[] sum = new int[score.length];
+  for (int i=0; i<sum.length; i++){
+   sum[i]=ArrayTools.sum(score[i]);
+  }
+  ArrayTools.print(sum);
+  int[] sorted = Arrays.copyOf(sum, sum.length);
+  //int[] sorted=ArrayTools.clone(sum);
+  Arrays.sort(sorted);
+  ArrayTools.reverse(sorted);
+  
+  int[] idx=new int[sorted.length];
+  for (int i=0; i<sorted.length; i++){
+   int value=sorted[i];
+   idx[i]=ArrayTools.search(sum,  value);
+   
+  }
+  ArrayTools.print(sum);
+  ArrayTools.print(sorted);
+  ArrayTools.print(idx);
+  
+  for (int i=0; i<idx.length; i++){
+   int student_id=idx[i];
+   String strScore=ArrayTools.toString(score[student_id]);
+   int student_sum=sum[student_id];
+   double student_avg=(double) student_sum/score[student_id].length;
+   //System.out.println(strScore+student_sum+"  "+student_avg);
+   System.out.print(strScore+student_sum+"  \t");
+   System.out.printf("%.2f",student_avg);
+   System.out.println();
+  }
+  
+ }
+}
